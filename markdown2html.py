@@ -14,7 +14,8 @@ def markdown2html(md):
 def main():
     """Main function."""
     if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
+        print("Usage: ./markdown2html.py README.md README.html",
+              file=sys.stderr)
         sys.exit(1)
 
     md_file = sys.argv[1]
