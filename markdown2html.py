@@ -1,7 +1,14 @@
 #!/usr/bin/python3
-"""Markdown to html."""
+"""
+Markdown to html.
+
+Usage: ./markdown2html.py [input] [output]
+
+Args:
+    input (str): Input markdown file.
+    output (str): Output html file.
+"""
 import sys
-import os
 import markdown
 from pathlib import Path
 
