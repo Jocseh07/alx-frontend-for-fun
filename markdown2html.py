@@ -7,7 +7,13 @@ from pathlib import Path
 
 
 def markdown2html(md):
-    """Convert markdown to html."""
+    """Convert markdown to html.
+
+    Args:
+        md (str): Markdown string.
+
+    Returns:
+        str: HTML string."""
     return markdown.markdown(md)
 
 
