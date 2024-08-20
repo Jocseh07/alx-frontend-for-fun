@@ -17,18 +17,7 @@ import markdown
 from pathlib import Path
 
 
-def markdown2html(md):
-    """Convert markdown to html.
-
-    Args:
-        md (str): Markdown string.
-
-    Returns:
-        str: HTML string."""
-    return markdown.markdown(md)
-
-
-def main():
+def markdown2html():
     """Main function.
 
     This function is the entry point of the program. It takes two command line arguments: the path to the Markdown file and the path to the HTML file. It reads the content of the Markdown file, converts it to HTML using the `markdown2html` function, and writes the HTML content to the specified HTML file.
@@ -54,7 +43,7 @@ def main():
     with open(md_file, 'r') as f:
         md = f.read()
 
-    html = markdown2html(md)
+    html = markdown.markdown(md)
 
     with open(html_file, 'w') as f:
         f.write(html)
@@ -64,4 +53,4 @@ def main():
 
 if __name__ == "__main__":
     """This is the main entry point of the program."""
-    main()
+    markdown2html()
