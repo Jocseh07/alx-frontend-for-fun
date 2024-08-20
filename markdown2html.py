@@ -1,15 +1,7 @@
 #!/usr/bin/python3
 
 
-"""
-Markdown to html.
-
-Usage: ./markdown2html.py README.md README.html
-
-Args:
-    input (str): Input markdown file.
-    output (str): Output html file.
-"""
+"""Usage: ./markdown2html.py README.md README.html"""
 
 
 import sys
