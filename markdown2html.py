@@ -4,7 +4,7 @@
 """
 Markdown to html.
 
-Usage: ./markdown2html.py [input] [output]
+Usage: ./markdown2html.py README.md README.html
 
 Args:
     input (str): Input markdown file.
