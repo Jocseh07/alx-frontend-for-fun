@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 
+"""Markdown to HTML
 
-"""Usage: ./markdown2html.py README.md README.html"""
+    Parameters:
+    None
+
+    Returns:
+    None
+"""
 
 
 import sys
