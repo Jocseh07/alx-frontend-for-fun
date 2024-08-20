@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
+
 """
 Markdown to html.
 
@@ -8,6 +10,8 @@ Args:
     input (str): Input markdown file.
     output (str): Output html file.
 """
+
+
 import sys
 import markdown
 from pathlib import Path
