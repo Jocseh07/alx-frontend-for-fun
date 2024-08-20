@@ -13,7 +13,7 @@ Args:
 
 
 import sys
-import markdown  # type: ignore
+import markdown
 from pathlib import Path
 
 
