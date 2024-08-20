@@ -10,9 +10,7 @@ from pathlib import Path
 
 
 def markdown2html():
-    """Main function.
-
-    This function is the entry point of the program. It takes two command line arguments: the path to the Markdown file and the path to the HTML file. It reads the content of the Markdown file, converts it to HTML using the `markdown2html` function, and writes the HTML content to the specified HTML file.
+    """This function converts a markdown file to an HTML file.
 
     Parameters:
     - None
