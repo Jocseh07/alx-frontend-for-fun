@@ -17,7 +17,7 @@ Example:
 
 
 import sys
-import markdown
+import markdown2
 from pathlib import Path
 
 
@@ -30,6 +30,7 @@ if __name__ == "__main__":
               file=sys.stderr)
         # Exit the program with a non-zero status code
         sys.exit(1)
+    markdowner = markdown2.Markdown()
 
     # Get the name of the Markdown file from the command line arguments
     md_file = sys.argv[1]
@@ -48,7 +49,7 @@ if __name__ == "__main__":
         md = f.read()
 
     # Convert the Markdown to HTML
-    html = markdown.markdown(md)
+    html = markdowner.convert(md)
 
     # Write the HTML to the output file
     with open(html_file, 'w') as f:
