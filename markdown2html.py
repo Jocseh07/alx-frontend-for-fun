@@ -17,10 +17,9 @@ import re
 
 
 def convert(content):
-
     # Convert Markdown headings to HTML
-    content = re.sub(r"^(#{1,6}) (.+)$", lambda m: f"<h{len(m.group(1))}>
-                    {m.group(2)}</h{len(m.group(1))}>", content, flags=re.M)
+    content = re.sub(r"^(#{1,6}) (.+)$", lambda m: f"<h{len(m.group(1))
+                                                        }>{m.group(2)}</h{len(m.group(1))}>", content, flags=re.M)
 
     return content
 
