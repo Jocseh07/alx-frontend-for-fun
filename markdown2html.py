@@ -33,23 +33,28 @@ def convertHeading(content):
 def convertUnordered(content):
     # Convert unordered list to HTML
     newContent = []
-    first_match_index = None
-    last_match_index = None
+    list_stack = []
 
     for i, line in enumerate(content):
         match = re.match(r"^- (.*)", line)
         if match:
             item = match.group(1)
             line = "<li>{}</li>\n".format(item)
-            if first_match_index is None:
-                first_match_index = i
-            last_match_index = i
-        newContent.append(line)
+            if not list_stack or i - 1 not in list_stack:
+                list_stack.append(i)
+                newContent.append("<ul>\n")
+            else:
+                list_stack.append(i)
+            newContent.append(line)
+        else:
+            if list_stack:
+                newContent.append("</ul>\n")
+                list_stack.pop()
+            newContent.append(line)
 
-    if first_match_index is not None and last_match_index is not None:
-        newContent.insert(first_match_index, "<ul>\n")
-        # +2 because we inserted an item before
-        newContent.insert(last_match_index + 2, "</ul>\n")
+    while list_stack:
+        newContent.append("</ul>\n")
+        list_stack.pop()
 
     return "".join(newContent)
 
