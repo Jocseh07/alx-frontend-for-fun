@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # Check if the correct number of arguments is provided
     if len(sys.argv) < 3:
         sys.stderr.write(
-            "Usage: ./markdown2html.py <input_file> <output_file>\n")
+            "Usage: ./markdown2html.py README.md README.html\n")
         sys.exit(1)
 
     # Get the input and output file names from the command line arguments
