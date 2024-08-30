@@ -72,6 +72,8 @@ def convertOrdered(content):
             if not list_stack or i - 1 not in list_stack:
                 list_stack.append(i)
                 newContent.append("<ol>\n")
+            else:
+                list_stack.append(i)
             newContent.append(line)
         else:
             if list_stack:
