@@ -59,10 +59,37 @@ def convertUnordered(content):
     return "".join(newContent)
 
 
+def convertOrdered(content):
+    # Convert ordered list to HTML
+    newContent = []
+    list_stack = []
+
+    for i, line in enumerate(content):
+        match = re.match(r"^\* (.*)", line)
+        if match:
+            item = match.group(1)
+            line = "<li>{}</li>\n".format(item)
+            if not list_stack or i - 1 not in list_stack:
+                list_stack.append(i)
+                newContent.append("<ol>\n")
+            newContent.append(line)
+        else:
+            if list_stack:
+                newContent.append("</ol>\n")
+            newContent.append(line)
+
+    while list_stack:
+        newContent.append("</ol>\n")
+        list_stack.pop()
+
+    return "".join(newContent)
+
+
 def convert(content):
     # Convert Markdown headings to HTML
     content = convertHeading(content)
     content = convertUnordered(content)
+    content = convertOrdered(content)
 
     return content
 
