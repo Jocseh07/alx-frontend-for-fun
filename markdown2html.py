@@ -47,14 +47,9 @@ def convertUnordered(content):
                 list_stack.append(i)
             newContent.append(line)
         else:
-            if list_stack:
+            if list_stack and list_stack[-1] == i - 1:
                 newContent.append("</ul>\n")
-                list_stack.pop()
             newContent.append(line)
-
-    while list_stack:
-        newContent.append("</ul>\n")
-        list_stack.pop()
 
     return newContent
 
@@ -76,15 +71,18 @@ def convertOrdered(content):
                 list_stack.append(i)
             newContent.append(line)
         else:
-            if list_stack:
+            if list_stack and list_stack[-1] == i - 1:
                 newContent.append("</ol>\n")
             newContent.append(line)
 
-    while list_stack:
-        newContent.append("</ol>\n")
-        list_stack.pop()
-
     return newContent
+
+
+def convertSimple(content):
+    # Convert simple text to HTML
+    newContent = []
+
+    return content
 
 
 def convert(content):
@@ -92,6 +90,7 @@ def convert(content):
     content = convertHeading(content)
     content = convertUnordered(content)
     content = convertOrdered(content)
+    content = convertSimple(content)
 
     content = "".join(content)
 
