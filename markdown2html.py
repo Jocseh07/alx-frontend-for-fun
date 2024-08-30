@@ -1,5 +1,15 @@
 #!/usr/bin/python3
 
+"""
+Markdown to HTML
+
+Usage:
+    markdown2html.py <input_file> <output_file>
+
+Arguments:
+    <input_file>    Input Markdown file.
+    <output_file>   Output HTML file.
+"""
 
 import sys
 import os
