@@ -56,7 +56,7 @@ def convertUnordered(content):
         newContent.append("</ul>\n")
         list_stack.pop()
 
-    return "".join(newContent)
+    return newContent
 
 
 def convertOrdered(content):
@@ -82,7 +82,7 @@ def convertOrdered(content):
         newContent.append("</ol>\n")
         list_stack.pop()
 
-    return "".join(newContent)
+    return newContent
 
 
 def convert(content):
@@ -90,6 +90,8 @@ def convert(content):
     content = convertHeading(content)
     content = convertUnordered(content)
     content = convertOrdered(content)
+
+    content = "".join(content)
 
     return content
 
