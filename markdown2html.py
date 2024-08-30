@@ -78,11 +78,27 @@ def convertOrdered(content):
     return newContent
 
 
-def convertSimple(content):
-    # Convert simple text to HTML
+def convertParagraph(content):
+    # Convert paragraphs to HTML
     newContent = []
+    paragraph = []
 
-    return content
+    for line in content:
+        if line.strip() == "":
+            if paragraph:
+                paragraph_html = "<p>\n    {}\n</p>\n".format(
+                    "\n    ".join(paragraph))
+                newContent.append(paragraph_html)
+                paragraph = []
+        else:
+            paragraph.append(line.strip())
+
+    if paragraph:
+        paragraph_html = "<p>\n    {}\n</p>\n".format(
+            "\n    ".join(paragraph))
+        newContent.append(paragraph_html)
+
+    return newContent
 
 
 def convert(content):
