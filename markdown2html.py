@@ -16,8 +16,8 @@ import sys
 import os
 
 
-def convert(content):
-    # Convert Markdown headings to HTML
+def convertHeading(content):
+    # Convert Markdown heading to HTML
     newContent = []
     for line in content:
         match = re.match(r"^(#+) (.*)", line)
@@ -28,6 +28,38 @@ def convert(content):
         newContent.append(line)
 
     return newContent
+
+
+def convertUnordered(content):
+    # Convert unordered list to HTML
+    newContent = []
+    first_match_index = None
+    last_match_index = None
+
+    for i, line in enumerate(content):
+        match = re.match(r"^- (.*)", line)
+        if match:
+            item = match.group(1)
+            line = "<li>{}</li>\n".format(item)
+            if first_match_index is None:
+                first_match_index = i
+            last_match_index = i
+        newContent.append(line)
+
+    if first_match_index is not None and last_match_index is not None:
+        newContent.insert(first_match_index, "<ul>\n")
+        # +2 because we inserted an item before
+        newContent.insert(last_match_index + 2, "</ul>\n")
+
+    return "".join(newContent)
+
+
+def convert(content):
+    # Convert Markdown headings to HTML
+    content = convertHeading(content)
+    content = convertUnordered(content)
+
+    return content
 
 
 def markdown2html(input_file, output_file):
