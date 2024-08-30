@@ -11,22 +11,30 @@ Arguments:
     <output_file>   Output HTML file.
 """
 
+import re
 import sys
 import os
-import re
 
 
 def convert(content):
     # Convert Markdown headings to HTML
+    newContent = []
+    for line in content:
+        match = re.match(r"^(#+) (.*)", line)
+        if match:
+            level = len(match.group(1))
+            title = match.group(2)
+            line = "<h{0}>{1}</h{0}>\n".format(level, title)
+        newContent.append(line)
 
-    return content
+    return newContent
 
 
 def markdown2html(input_file, output_file):
     # Open the input file in read mode
     with open(input_file, "r") as f:
         # Read the content of the input file
-        content = f.read()
+        content = f.readlines()
 
     # Convert Markdown headings to HTML
     content = convert(content)
@@ -34,7 +42,7 @@ def markdown2html(input_file, output_file):
     # Open the output file in write mode
     with open(output_file, "w") as f:
         # Write the modified content to the output file
-        f.write(content)
+        f.writelines(content)
 
 
 if __name__ == "__main__":
