@@ -78,25 +78,30 @@ def convertOrdered(content):
     return newContent
 
 
-def convertParagraph(content):
+def convertSimple(content):
     # Convert paragraphs to HTML
     newContent = []
-    paragraph = []
+    list_stack = []
 
-    for line in content:
-        if line.strip() == "":
-            if paragraph:
-                paragraph_html = "<p>\n    {}\n</p>\n".format(
-                    "\n    ".join(paragraph))
-                newContent.append(paragraph_html)
-                paragraph = []
+    for i, line in enumerate(content):
+        match = re.match(r"^[a-zA-Z0-9]", line.strip())
+        if match:
+            if not list_stack or i - 1 not in list_stack:
+                list_stack.append(i)
+                newContent.append("<p>\n")
+            else:
+                word2 = '\t\t<br />\n'
+                newContent.append(word2)
+                list_stack.append(i)
+            word = '\t' + line
+            newContent.append('\t' + word)
         else:
-            paragraph.append(line.strip())
+            if list_stack and list_stack[-1] == i - 1:
+                newContent.append("</p>\n")
+            newContent.append(line)
 
-    if paragraph:
-        paragraph_html = "<p>\n    {}\n</p>\n".format(
-            "\n    ".join(paragraph))
-        newContent.append(paragraph_html)
+    if list_stack and (list_stack[-1]) == len(content) - 1:
+        newContent.append("</p>\n")
 
     return newContent
 
